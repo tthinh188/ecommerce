@@ -87,4 +87,10 @@ export default makeStyles((theme) => ({
       width: '20ch',
     },
   },
+  menuItem: {
+    color: 'white',
+    textDecoration: 'none',
+    zIndex: 1,
+    padding: '20px',
+  }
 }));

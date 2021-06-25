@@ -24,9 +24,13 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isSignup) {
-            dispatch(signup(formData, history)).then(error => setError(error));
+            dispatch(signup(formData, history)).then(error => {
+                error ? setError(error) : setError('')
+            })
         } else {
-            dispatch(signin(formData, history)).then(error => setError(error)); 
+            dispatch(signin(formData, history)).then(error => {
+                error ? setError(error) : setError('')
+            })
         }
     }
 

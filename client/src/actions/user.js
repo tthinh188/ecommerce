@@ -21,7 +21,6 @@ export const signup = (formData, history) => async (dispatch) => {
 
         history.push('/')
     } catch (error) {
-        console.log(error);
         return error.response.data.message;
     }
 }
@@ -63,6 +62,7 @@ export const updateUser = (refreshToken, formData) => async (dispatch) => {
         const response = await api.updateUser(accessToken, formData);
         const data = { user: { ...response.data }, refreshToken: refreshToken };
         dispatch({ type: 'UPDATE', data })
+        
         return response;
     } catch (error) {
         return error.response;
@@ -82,8 +82,17 @@ export const getUser = (refreshToken) => async (dispatch) => {
     }
 }
 
-export const changePassword = (refreshToken, formData) => async (dispatch) => {
+export const changePassword = async (refreshToken, formData) => {
+    try {
 
+        const res = await api.getAccessToken({ refreshToken });
+        const accessToken = res.data.accessToken;
+
+        const response = await api.changePassword(accessToken, formData);
+        return response;
+    } catch (error) {
+        return error.response;
+    }
 }
 
 export const userLogout = () => (dispatch) => {

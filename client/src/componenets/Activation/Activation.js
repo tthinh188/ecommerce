@@ -28,7 +28,7 @@ const Activation = () => {
 
     useEffect(() => {
         dispatch(activation(activation_token)).then(data => setEmail(data.email));
-    }, [])
+    }, [dispatch, activation_token])
     return (
         <Paper className={classes.paper}>
             { email ?

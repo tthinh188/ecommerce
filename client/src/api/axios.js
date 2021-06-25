@@ -19,3 +19,11 @@ export const updateUser = (accessToken, formData) => API.patch('/api/v1/users/up
 export const getUser = (accessToken) => API.get('/api/v1/users/user', {
     headers: { Authorization: accessToken }
 })
+
+export const changePassword = (accessToken, formData) => API.patch('/api/v1/users/change_password', formData, {
+    headers: { Authorization: accessToken }
+})
+
+export const uploadAvatar = (accessToken, image) => API.post('/api/v1/upload/upload_avatar', image, {
+    headers: { 'content-type': 'multipart/form-data', Authorization: accessToken }
+})

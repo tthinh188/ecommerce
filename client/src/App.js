@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './componenets/Header/Header';
@@ -37,10 +37,6 @@ function App() {
 
           <Route exact path='/user/activate/:activation_token'>
             <Activation />
-          </Route>
-
-          <Route path='/user'>
-            <h1>Activate</h1>
           </Route>
         </Switch>
       </Router>

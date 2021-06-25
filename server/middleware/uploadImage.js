@@ -11,7 +11,6 @@ const uploadImage = (req, res, next) => {
             removeTmp(file.tempFilePath);
             return res.status(400).json({ message: "Size is too large." })
         }
-
         next();
     } catch (error) {
 

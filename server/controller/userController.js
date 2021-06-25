@@ -178,6 +178,7 @@ export const updateUser = async (req, res) => {
         const user = req.user;
 
         const { email, firstName, lastName } = req.body;
+
         const existingUser = await query(`SELECT * FROM user WHERE userId=${user.id}`)
 
         if (existingUser.length === 0) return res.status(400).json({ message: "User doesn't exist" });
@@ -207,18 +208,23 @@ export const updateUser = async (req, res) => {
     }
 }
 
-const changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {
     const user = req.user;
-    const { password, confirmPassword } = req.body;
+    const { currentPassword, password, confirmPassword } = req.body;
 
     try {
+        const existingUser = await query(`SELECT * FROM user WHERE userId=${user.id}`)
+        if (existingUser.length === 0) return res.status(400).json({ message: "User doesn't exist" });
+        const isPasswordCorrect = await bcrypt.compare(currentPassword, existingUser[0].password); // compare brcypt password with the password stored from the db
+        if (!isPasswordCorrect) return res.status(400).json({ message: "Incorrect password" });
         if (password !== confirmPassword) return res.status(400).json({ message: "Password don't match." });
+        
         const hashedPassword = await bcrypt.hash(password, 12); // create hashed password , salt : 12
         await query(`UPDATE user SET password='${hashedPassword}' WHERE userId=${user.id}`)
+        res.status(200).json({ message: "Successfully change password"});
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
-
 }
 
 const createActivationToken = (payload) => {

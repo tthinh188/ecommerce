@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     },
     avatar: {
         margin: 'auto',
-    }, 
+    },
     profileInfo: {
         marginTop: '20px',
         display: 'flex',

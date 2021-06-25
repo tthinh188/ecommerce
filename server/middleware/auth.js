@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const auth = (req, res, next) => {
     try {
         const token = req.header("Authorization");
-
+        
         if (!token) return res.status(400).json({ message: "Invalid Authorization." });
 
         jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {

@@ -1,0 +1,75 @@
+
+.toolBar_left {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.signinButton {
+    color: #3f51b5 !important;
+    background-color: whitesmoke !important;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.userName {
+    padding: 0 30px;
+    cursor: pointer;
+}
+
+.sideMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 84%;
+    padding: 20px 0;
+    padding-top: 100px;
+    width: 20%;
+    transition: 0.5s;
+    text-align: center;
+    left: -999px;
+    z-index: 1;
+}
+
+.show {
+    left: 0;
+}
+
+.menuItem {
+    color: white;
+    text-decoration: none;
+    padding: 20px 0;
+    font-weight: 700;
+    font-size: 1.3rem;
+    transition: 0.5s;
+}
+
+.menuItem:hover {
+    color: #3f51b5;
+    background-color: pink;
+}
+
+.menuButton {
+    color: white !important;
+}
+
+@media (max-width: 768px) {
+    .sideMenu {
+        width: 100%
+    }
+
+    .toolBar_middle {
+        display: none;
+    }
+}
+
